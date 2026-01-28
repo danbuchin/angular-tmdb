@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { IMovie } from '../../models/movie';
-import { DecimalPipe } from '@angular/common';
+import { DecimalPipe, NgClass, NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-movie',
   templateUrl: './movie.component.html',
-  imports: [DecimalPipe],
+  imports: [DecimalPipe, NgClass, NgStyle],
 })
 export class MovieComponent {
   @Input() movie: IMovie;

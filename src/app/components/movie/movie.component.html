@@ -2,13 +2,22 @@
     <img [src]="'http://image.tmdb.org/t/p/w342'+movie.poster_path" [alt]="movie.title" class="w-1/6">
     <div class="p-4">
         <h2 class="text-lg">{{movie.title}}</h2>
-        <button class="px-4 py-2 bg-blue-400 hover:bg-blue-600" (click)="details = !details">
+        <button
+            class="px-4 py-2"
+            [ngClass]="{
+                'bg-blue-400': !details,
+                'bg-green-400': details,
+                'hover:bg-blue-600': !details,
+                'hover:bg-green-600': details
+            }"
+            (click)="details = !details"
+        >
             {{details ? "Hide" : "Show"}} details
         </button>
         @if (details) {
             <p>{{movie.overview}}</p>
             <p>Release date: {{movie.release_date}}</p>
-            <p>Rating: {{movie.vote_average | number:'2.2-3'}}</p>
+            <p>Rating: <span [style.font-weight]="'bold'">{{movie.vote_average | number:'2.2-3'}}</span></p>
         }
     </div>
 </article>
