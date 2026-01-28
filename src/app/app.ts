@@ -2,6 +2,8 @@ import { UpperCasePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MovieComponent } from './components/movie/movie.component';
+import { movies as data } from './data/movies';
+import { IMovie } from './models/movie';
 
 @Component({
   selector: 'app-root',
@@ -11,4 +13,5 @@ import { MovieComponent } from './components/movie/movie.component';
 })
 export class App {
   protected title = 'angular-tmdb';
+  movies: IMovie[] = data;
 }

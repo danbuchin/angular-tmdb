@@ -1,2 +1,8 @@
-<h2>Movie</h2>
-<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur iste quasi non repellendus rerum, adipisci corrupti doloribus a sint doloremque amet praesentium qui, voluptas necessitatibus voluptatum vero modi ratione. Quaerat?</p>
+<article class="flex flex-row shadow-lg bg-blue-100">
+    <img [src]="'http://image.tmdb.org/t/p/w342'+movie.poster_path" [alt]="movie.title" class="w-1/6">
+    <div class="p-4">
+        <h2 class="text-lg">{{movie.title}}</h2>
+        <p>{{movie.overview}}</p>
+        <p>Release date: {{movie.release_date}}</p>
+    </div>
+</article>
