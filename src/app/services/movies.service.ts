@@ -1,13 +1,21 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpParams,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { delay, Observable } from 'rxjs';
+import { catchError, delay, Observable, retry, throwError } from 'rxjs';
 import { APIResponse } from '../models/movie';
+import { GlobalErrorService } from './global-error.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MoviesService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private errorService: GlobalErrorService,
+  ) {}
 
   getByName(name: string): Observable<APIResponse> {
     return this.http
@@ -17,6 +25,11 @@ export class MoviesService {
           name,
         ),
       })
-      .pipe(delay(2000));
+      .pipe(delay(2000), retry(2), catchError(this.handleError.bind(this)));
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    this.errorService.handle(error.message);
+    return throwError(() => error.message);
   }
 }

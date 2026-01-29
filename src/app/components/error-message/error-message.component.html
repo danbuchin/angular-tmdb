@@ -1,0 +1,11 @@
+@if (errorService.error$ | async; as error) {
+    <div class="w-full bg-red-800 text-white text-center h-[50px]">
+        {{error}}
+        <button
+            class="bg-red-900 p-1 text-white absolute top-2 right-5"
+            (click)="errorService.clear()"
+        >
+            &times;
+        </button>
+    </div>
+}
