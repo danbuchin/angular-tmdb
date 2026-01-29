@@ -2,7 +2,7 @@ import { AsyncPipe, UpperCasePipe } from '@angular/common';
 import { Component, effect, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { MovieComponent } from './components/movie/movie.component';
 import { movies as data } from './data/movies';
 import { APIResponse } from './models/movie';
@@ -34,8 +34,9 @@ export class App {
 
   fetchMovies(name: string) {
     this.loading = true;
-    this.movies$ = this.moviesService.getByName(name);
-    this.loading = false;
+    this.movies$ = this.moviesService
+      .getByName(name)
+      .pipe(tap(() => (this.loading = false)));
   }
 
   // ngOnInit(): void {
