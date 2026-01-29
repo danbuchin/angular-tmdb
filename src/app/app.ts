@@ -14,13 +14,24 @@ import { MoviesService } from './services/movies.service';
 })
 export class App implements OnInit {
   protected title = 'angular-tmdb';
-  movies: IMovie[] = data;
+  movies: IMovie[] = [];
+  loading = false;
 
   constructor(private moviesService: MoviesService) {}
 
   ngOnInit(): void {
-    this.moviesService
-      .getByName('mission impossible')
-      .subscribe((movielist) => (this.movies = movielist.results));
+    this.loading = true;
+    try {
+      this.moviesService
+        .getByName('mission impossible')
+        .subscribe((movielist) => {
+          this.movies = movielist.results;
+        });
+    } catch (e) {
+      // If request fails, use static search results for 'kingsman'
+      this.movies = data;
+    } finally {
+      this.loading = false;
+    }
   }
 }

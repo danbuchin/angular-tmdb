@@ -1,4 +1,7 @@
 <h1 class="font-bold text-center mb-1 text-xl">{{ title | uppercase }}</h1>
+@if (loading) {
+  <p class="text-center text-lg">Loading...</p>
+}
 @for (movie of movies; track movie.id) {
   <app-movie [movie]="movie"></app-movie>
 }
