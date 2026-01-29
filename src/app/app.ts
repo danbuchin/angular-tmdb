@@ -8,6 +8,7 @@ import { movies as data } from './data/movies';
 import { APIResponse } from './models/movie';
 import { MoviesService } from './services/movies.service';
 import { ErrorMessage } from './components/error-message/error-message.component';
+import { MovieInfo } from './components/movie-info/movie-info.component';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,7 @@ import { ErrorMessage } from './components/error-message/error-message.component
     UpperCasePipe,
     ErrorMessage,
     FormsModule,
+    MovieInfo
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',

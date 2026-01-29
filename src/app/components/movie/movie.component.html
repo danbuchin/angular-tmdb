@@ -15,9 +15,7 @@
             {{details ? "Hide" : "Show"}} details
         </button>
         @if (details) {
-            @for (entry of (movie | stringValues); track entry[0]) {
-                <p><span [style.font-weight]="'bold'">{{entry[0] | snakeCaseToRegularText}}</span>: {{entry[1]}}</p>
-            }
+            <ng-content></ng-content>
         }
     </div>
 </article>
