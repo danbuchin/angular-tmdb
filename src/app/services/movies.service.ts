@@ -18,6 +18,9 @@ export class MoviesService {
   ) {}
 
   getByName(name: string): Observable<APIResponse> {
+    if(!name) {
+      return new Observable<APIResponse>()
+    }
     return this.http
       .get<APIResponse>('https://api.themoviedb.org/3/search/movie', {
         params: new HttpParams({ fromObject: { language: 'en-US' } }).append(
@@ -29,7 +32,7 @@ export class MoviesService {
   }
 
   private handleError(error: HttpErrorResponse) {
-    this.errorService.handle(error.message);
+    this.errorService.handle(JSON.stringify(error));
     return throwError(() => error.message);
   }
 }

@@ -1,6 +1,12 @@
 <app-error-message></app-error-message>
 <div class="pt-5 bg-blue-50 container mx-auto">
   <h1 class="font-bold text-center mb-1 text-xl">{{ title | uppercase }}</h1>
+  <input
+    type="text" 
+    class="border w-full mb-1"
+    placeholder="Search"
+    [(ngModel)]="query"
+  >
   @if (loading) {
     <p class="text-center text-lg">Loading...</p>
   }
